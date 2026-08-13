@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Upload a PDF and generate structured AI notes." />
+  <title>PDF Notes AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<main class="shell">
+  <header class="hero">
+    <span class="eyebrow">LLM PDF NOTE MAKER</span>
+    <h1>Turn any PDF into clean study notes.</h1>
+    <p>Upload a text-based PDF. The backend extracts its content and sends only the extracted text to your configured LLM API.</p>
+  </header>
+  <section class="card upload-card">
+    <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Upload PDF">
+      <div class="file-icon">PDF</div>
+      <h2>Drop your PDF here</h2>
+      <p>or click to choose a file · up to 15 MB</p>
+      <input id="pdfInput" type="file" accept="application/pdf,.pdf" hidden />
+    </div>
+    <div id="fileRow" class="file-row hidden">
+      <div><strong id="fileName"></strong><span id="fileSize"></span></div>
+      <button id="removeButton" class="text-button" type="button">Remove</button>
+    </div>
+    <button id="generateButton" class="primary-button" type="button" disabled>Generate notes</button>
+    <p id="status" class="status" aria-live="polite"></p>
+  </section>
+  <section id="resultSection" class="card result-card hidden">
+    <div class="result-head">
+      <div><span class="eyebrow">GENERATED NOTES</span><h2 id="resultTitle">Your notes</h2><p id="meta"></p></div>
+      <div class="actions"><button id="copyButton" class="secondary-button" type="button">Copy</button><button id="downloadButton" class="secondary-button" type="button">Download .md</button></div>
+    </div>
+    <article id="notes" class="notes"></article>
+  </section>
+</main>
+<script src="./app.js"></script>
+</body>
+</html>
